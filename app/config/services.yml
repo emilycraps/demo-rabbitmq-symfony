@@ -4,6 +4,16 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    send_confirmation_mail_handler:
+        class: AppBundle\Command\SendConfirmationMailHandler
+        arguments:
+            - "@logger"
+        tags:
+            - { name: command_handler, handles: AppBundle\Command\SendConfirmationMail }
+
+    send_confirmation_mail_console_command:
+        class: AppBundle\ConsoleCommand\SendConfirmationMailCommand
+        arguments:
+            - "@command_bus"
+        tags:
+            - { name: console.command }
