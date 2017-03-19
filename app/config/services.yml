@@ -17,3 +17,20 @@ services:
             - "@command_bus"
         tags:
             - { name: console.command }
+
+    doctrine_reconnect_command_bus_middleware:
+        class: AppBundle\Middleware\DoctrineReconnectMiddleware
+        arguments:
+            - "@doctrine.dbal.default_connection"
+            - "@logger"
+        public: false
+        tags:
+            - { name: command_bus_middleware, priority: 100 }
+
+    logging_command_bus_middleware:
+        class: AppBundle\Middleware\LoggingMiddleware
+        arguments:
+            - "@logger"
+        public: false
+        tags:
+            - { name: command_bus_middleware, priority: -1000 }
