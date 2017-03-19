@@ -2,14 +2,18 @@
 
 namespace AppBundle\Command;
 
+use JMS\Serializer\Annotation\Type;
+
 class SendConfirmationMail
 {
     /**
      * @var int
+     * @Type("integer")
      */
     private $userId;
     /**
      * @var int
+     * @Type("integer")
      */
     private $orderId;
 

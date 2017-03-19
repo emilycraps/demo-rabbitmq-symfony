@@ -68,3 +68,32 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'rabbit'
+            port:     5672
+            user:     'guest'
+            password: 'guest'
+            vhost:    '/'
+            lazy:     true
+            connection_timeout: 3
+            read_write_timeout: 3
+    producers:
+        asynchronous_commands:
+            connection:       default
+            exchange_options: { name: 'asynchronous_commands', type: direct }
+    consumers:
+        asynchronous_commands:
+            connection:       default
+            exchange_options: { name: 'asynchronous_commands', type: direct }
+            queue_options:    { name: 'asynchronous_commands' }
+            # use the consumer provided by SimpleBusRabbitMQBundleBridgeBundle
+            callback:         simple_bus.rabbit_mq_bundle_bridge.commands_consumer
+
+simple_bus_rabbit_mq_bundle_bridge:
+    commands:
+        # this producer service will be defined by OldSoundRabbitMqBundle,
+        # its name is old_sound_rabbit_mq.%producer_name%_producer
+        producer_service_id: old_sound_rabbit_mq.asynchronous_commands_producer

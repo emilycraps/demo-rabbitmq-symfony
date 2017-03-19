@@ -9,7 +9,8 @@ services:
         arguments:
             - "@logger"
         tags:
-            - { name: command_handler, handles: AppBundle\Command\SendConfirmationMail }
+            #- { name: command_handler, handles: AppBundle\Command\SendConfirmationMail }
+            - { name: asynchronous_command_handler, handles: AppBundle\Command\SendConfirmationMail }
 
     send_confirmation_mail_console_command:
         class: AppBundle\ConsoleCommand\SendConfirmationMailCommand

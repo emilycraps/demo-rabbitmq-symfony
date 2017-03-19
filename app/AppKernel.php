@@ -18,6 +18,13 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
 
             new SimpleBus\SymfonyBridge\SimpleBusCommandBusBundle(),
+
+            // Asynchronous messaging
+            new SimpleBus\AsynchronousBundle\SimpleBusAsynchronousBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new SimpleBus\JMSSerializerBundleBridge\SimpleBusJMSSerializerBundleBridgeBundle(),
+            new OldSound\RabbitMqBundle\OldSoundRabbitMqBundle(),
+            new SimpleBus\RabbitMQBundleBridge\SimpleBusRabbitMQBundleBridgeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
