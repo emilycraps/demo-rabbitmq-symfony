@@ -1,0 +1,20 @@
+version: "2"
+services:
+    web:
+        image: zimmobe/php:7.1-apache-ubuntu
+        volumes:
+            - .:/var/www/project
+        environment:
+            - SYMFONY_ENV=dev
+            - SYMFONY_DEBUG=1
+            - VIRTUAL_HOST=web.symfony.docker
+        ports:
+            - 80
+        links:
+            - rabbit
+    rabbit:
+        image: rabbitmq:3-management
+        ports:
+            - 15672
+        environment:
+            VIRTUAL_HOST: rabbit.symfony.docker
