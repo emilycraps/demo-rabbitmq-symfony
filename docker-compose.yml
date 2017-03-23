@@ -17,4 +17,5 @@ services:
         ports:
             - 15672
         environment:
-            VIRTUAL_HOST: rabbit.symfony.docker
+            - VIRTUAL_HOST=rabbit.symfony.docker
+            - VIRTUAL_PORT=15672

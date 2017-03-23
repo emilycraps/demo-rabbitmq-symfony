@@ -26,7 +26,7 @@ services:
             - "@logger"
         public: false
         tags:
-            - { name: command_bus_middleware, priority: 100 }
+            - { name: asynchronous_command_bus_middleware, priority: 1001 }
 
     logging_command_bus_middleware:
         class: AppBundle\Middleware\LoggingMiddleware
@@ -34,4 +34,4 @@ services:
             - "@logger"
         public: false
         tags:
-            - { name: command_bus_middleware, priority: -1000 }
+            - { name: asynchronous_command_bus_middleware, priority: -1001 }
