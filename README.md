@@ -1,10 +1,10 @@
-#RabbitMQ demo in Symfony, using commands
+# RabbitMQ demo in Symfony, using commands
 
 **RabbitMQ** https://www.rabbitmq.com/
 
 **simple bus** hhttps://github.com/SimpleBus
 
-##Setup
+## Setup
 
 `$ composer install`
 
@@ -15,7 +15,7 @@ This demo uses docker and docker-compose.
 
 You can access the RabbitMQ management plugin at http://rabbit.symfony.docker/. Default login is guest / guest.
 
-###Confirm Order example
+### Confirm Order example
 Demonstrates the most simple example: 1 exchange, 1 queue, 1 consumer.
 
 Publish a message  
